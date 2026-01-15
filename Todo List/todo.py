@@ -11,13 +11,7 @@ root.geometry('400x600')
 label = Label(root, text='Todo List', font=('Arial',40,'bold'))
 label.pack()
 
-entry= tk.Entry(root, width=30)
-entry.pack(pady=5)
-
-todolist_frame = tk.Frame(root, width=40)
-todolist_frame.pack(pady=5)
-
-def addTask():
+def addTask(event= NONE):
     text= entry.get()
 
     if text.strip == "":
@@ -40,6 +34,14 @@ def addTask():
 
     todolist.append(task)
     entry.delete(0, tk.END)
+
+entry= tk.Entry(root, width=30)
+entry.pack(pady=5)
+entry.bind("<Return>", addTask)
+
+todolist_frame = tk.Frame(root, width=40)
+todolist_frame.pack(pady=5)
+
 
 def delAll():
     for task in todolist:
